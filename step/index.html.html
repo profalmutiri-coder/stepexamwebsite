@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حقيبة تدريبية - اختبار STEP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --primary:#1B3A6B;--primary-light:#2D5AA0;--accent:#E8A020;--accent-light:#FFF3D6;
+  --success:#1A7A4A;--success-light:#E6F7EE;--danger:#C0392B;--danger-light:#FDECEA;
+  --surface:#F8F9FC;--card:#FFFFFF;--border:#E2E8F0;--text:#1A202C;--text-muted:#64748B;
+  --reading:#2563EB;--reading-light:#EFF6FF;--grammar:#7C3AED;--grammar-light:#F5F3FF;
+  --listening:#0891B2;--listening-light:#ECFEFF;
+  --radius:12px;--radius-sm:8px;--shadow:0 2px 12px rgba(0,0,0,.08);--shadow-md:0 4px 24px rgba(0,0,0,.12);
+}
+body{font-family:'Cairo','Tajawal',sans-serif;background:var(--surface);color:var(--text);line-height:1.7;font-size:15px;}
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 60%,#1a5276 100%);color:white;padding:60px 40px 80px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.05);}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-40px;width:300px;height:300px;border-radius:50%;background:rgba(232,160,32,.12);}
+.hero-badge{display:inline-block;background:rgba(232,160,32,.25);border:1px solid rgba(232,160,32,.5);color:#FCD980;font-size:13px;font-weight:600;padding:6px 20px;border-radius:30px;margin-bottom:20px;}
+.hero h1{font-size:42px;font-weight:900;margin-bottom:14px;line-height:1.3;}
+.hero h1 span{color:#FCD980;}
+.hero p{font-size:17px;opacity:.85;max-width:600px;margin:0 auto 30px;}
+.hero-stats{display:flex;justify-content:center;gap:40px;margin-top:30px;position:relative;z-index:1;flex-wrap:wrap;}
+.hero-stat{text-align:center;}
+.hero-stat .num{font-size:32px;font-weight:900;color:#FCD980;display:block;}
+.hero-stat .lbl{font-size:13px;opacity:.8;}
+/* LAYOUT */
+.container{max-width:1000px;margin:0 auto;padding:0 24px;}
+.tabs-wrap{background:white;border-bottom:2px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow);}
+.tabs{display:flex;max-width:1000px;margin:0 auto;padding:0 24px;gap:4px;overflow-x:auto;}
+.tab-btn{padding:18px 28px;border:none;background:none;font-family:'Cairo',sans-serif;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;}
+.tab-btn:hover{color:var(--primary);}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--accent);}
+.day-section{display:none;padding:40px 0 60px;}
+.day-section.active{display:block;}
+/* SECTION HEADER */
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:20px;border-bottom:2px solid var(--border);}
+.day-badge{width:60px;height:60px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;flex-shrink:0;}
+.day1 .day-badge{background:#EFF6FF;color:var(--reading);}
+.day2 .day-badge{background:var(--grammar-light);color:var(--grammar);}
+.day3 .day-badge{background:var(--listening-light);color:var(--listening);}
+.section-header h2{font-size:24px;font-weight:700;}
+.section-header p{color:var(--text-muted);font-size:14px;margin-top:4px;}
+/* CARDS */
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:36px;}
+.ov-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow);}
+.ov-card .ov-icon{font-size:28px;margin-bottom:10px;display:block;}
+.ov-card .ov-num{font-size:26px;font-weight:900;display:block;margin-bottom:4px;}
+.ov-card .ov-lbl{font-size:13px;color:var(--text-muted);}
+.ov-reading .ov-num{color:var(--reading);}
+.ov-grammar .ov-num{color:var(--grammar);}
+.ov-listening .ov-num{color:var(--listening);}
+.ov-time .ov-num{color:var(--accent);}
+/* INFO BOX */
+.info-box{border-radius:var(--radius);padding:20px 24px;margin-bottom:28px;display:flex;gap:16px;align-items:flex-start;}
+.info-box.blue{background:var(--reading-light);border-right:4px solid var(--reading);}
+.info-box.purple{background:var(--grammar-light);border-right:4px solid var(--grammar);}
+.info-box.teal{background:var(--listening-light);border-right:4px solid var(--listening);}
+.info-box.amber{background:var(--accent-light);border-right:4px solid var(--accent);}
+.info-box .ib-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.info-box h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.info-box p{font-size:14px;color:var(--text-muted);}
+/* TOPIC CARD */
+.topic-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:24px;overflow:hidden;box-shadow:var(--shadow);}
+.topic-header{padding:18px 24px;display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none;}
+.topic-header:hover{background:var(--surface);}
+.topic-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;}
+.day1 .topic-num{background:var(--reading-light);color:var(--reading);}
+.day2 .topic-num{background:var(--grammar-light);color:var(--grammar);}
+.day3 .topic-num{background:var(--listening-light);color:var(--listening);}
+.topic-header h3{font-size:16px;font-weight:700;flex:1;}
+.topic-time{font-size:12px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;white-space:nowrap;}
+.toggle-icon{font-size:18px;color:var(--text-muted);transition:transform .3s;}
+.topic-body{display:none;padding:0 24px 24px;border-top:1px solid var(--border);}
+.topic-body.open{display:block;}
+.toggle-icon.open{transform:rotate(180deg);}
+.content-block{margin-top:20px;}
+.content-block h4{font-size:14px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--border);}
+/* STEPS */
+.steps{list-style:none;}
+.steps li{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.day1 .step-num{background:var(--reading);color:white;}
+.day2 .step-num{background:var(--grammar);color:white;}
+.day3 .step-num{background:var(--listening);color:white;}
+.step-text{font-size:14px;line-height:1.7;}
+.step-text strong{color:var(--primary);}
+/* GRAMMAR */
+.grammar-box{background:#FBF8FF;border:1px solid #D9CEFF;border-radius:var(--radius-sm);padding:18px 20px;margin-top:16px;}
+.grammar-box .ex-label{font-size:11px;font-weight:700;color:var(--grammar);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:block;}
+.rule-card{background:white;border:1px solid #D9CEFF;border-radius:8px;padding:14px 16px;margin-bottom:12px;}
+.rule-card .rule-title{font-size:13px;font-weight:700;color:var(--grammar);margin-bottom:8px;}
+.rule-card .rule-text{font-size:13px;color:var(--text-muted);}
+.rule-card .eg{font-size:13px;color:var(--primary);font-style:italic;margin-top:6px;}
+.blank{display:inline-block;min-width:80px;border-bottom:2px solid var(--grammar);color:var(--grammar);font-weight:700;padding:0 8px;}
+.fill-blank{background:white;border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:14px;margin-bottom:10px;flex-wrap:wrap;}
+/* READING */
+.options{list-style:none;}
+.options li{display:flex;gap:10px;align-items:center;padding:8px 12px;border-radius:8px;margin-bottom:6px;font-size:14px;border:1px solid var(--border);background:white;}
+.options li.correct{background:var(--success-light);border-color:#86EFAC;color:var(--success);font-weight:600;}
+.opt-letter{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--border);color:var(--text-muted);flex-shrink:0;}
+.options li.correct .opt-letter{background:var(--success);color:white;}
+.answer-note{font-size:13px;color:var(--success);font-weight:600;margin-top:12px;padding:10px 14px;background:var(--success-light);border-radius:8px;display:flex;align-items:center;gap:8px;}
+.q-text{font-weight:600;font-size:14px;color:var(--primary);margin-bottom:10px;}
+/* TABLES */
+.schedule-table{width:100%;border-collapse:collapse;margin-top:14px;}
+.schedule-table th,.schedule-table td{padding:12px 16px;text-align:right;border-bottom:1px solid var(--border);font-size:14px;}
+.schedule-table th{background:var(--surface);font-weight:700;font-size:13px;color:var(--text-muted);}
+.schedule-table tr:last-child td{border-bottom:none;}
+.time-badge{display:inline-block;background:var(--accent-light);color:#92400E;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;}
+.day-tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;}
+.tag-read{background:var(--reading-light);color:var(--reading);}
+.tag-gram{background:var(--grammar-light);color:var(--grammar);}
+/* PROGRESS */
+.pb-wrap{margin:8px 0;}
+.pb-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
+.pb-label span:first-child{font-weight:600;}
+.pb-label span:last-child{color:var(--text-muted);}
+.pb-track{background:var(--border);border-radius:20px;height:8px;overflow:hidden;}
+.pb-fill{height:100%;border-radius:20px;}
+.pb-r{background:var(--reading);width:40%;}
+.pb-g{background:var(--grammar);width:40%;}
+.pb-l{background:var(--listening);width:20%;}
+/* READING ACCORDION */
+.ra-details{background:#fff;border-radius:12px;border:1px solid #e2e8f0;margin-bottom:15px;overflow:hidden;}
+.ra-details summary{background:#f8fafc;padding:18px 20px;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;outline:none;font-weight:bold;list-style:none;}
+.ra-details summary::-webkit-details-marker{display:none;}
+.ra-details summary:hover{background:#edf2f7;}
+.ra-details[open] summary{background:#f1f5f9;border-bottom:1px solid #edf2f7;}
+.ra-cnum{background:#2b6cb0;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;flex-shrink:0;}
+.ra-title{font-size:15px;color:#1a202c;flex:1;margin:0;font-weight:700;}
+.ra-time{font-size:12px;color:#4a5568;background:#edf2f7;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.ra-arr{font-size:12px;color:#a0aec0;transition:transform .3s;}
+.ra-details[open] .ra-arr{transform:rotate(180deg);color:#2b6cb0;}
+.ra-body{padding:20px;}
+.ra-passage{background:#f7fafc;border-right:4px solid #cbd5e0;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;font-size:14px;line-height:1.8;direction:ltr;text-align:left;}
+.ra-bt{font-weight:bold;color:#2d3748;margin:20px 0 10px;border-bottom:2px solid #edf2f7;padding-bottom:5px;font-size:14px;}
+.ra-ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:18px;margin-bottom:15px;}
+.ra-q{font-weight:600;margin-bottom:10px;direction:ltr;text-align:left;font-size:14px;color:var(--primary);}
+.ra-opts{list-style:none;padding:0;}
+.ra-opts li{padding:9px 12px;background:#fff;border:1px solid #e2e8f0;margin-bottom:7px;border-radius:6px;display:flex;align-items:center;gap:10px;font-size:14px;direction:ltr;text-align:left;}
+.ra-opts li.ok{background:#e6fffa;border-color:#319795;color:#234e52;font-weight:600;}
+.ra-ol{font-weight:bold;color:#a0aec0;background:#edf2f7;padding:2px 6px;border-radius:4px;}
+.ra-opts li.ok .ra-ol{background:#319795;color:#fff;}
+.ra-note{background:#e6f4ea;color:#137333;padding:12px 15px;border-radius:6px;font-size:13px;margin-top:10px;line-height:1.6;}
+.ra-steps{list-style:none;padding:0;margin:0 0 20px;}
+.ra-steps li{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start;font-size:14px;line-height:1.6;}
+.ra-sn{background:#e2e8f0;color:#4a5568;width:22px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:11px;flex-shrink:0;margin-top:2px;}
+/* LISTENING */
+.ld-details{background:#fff;border-radius:12px;border:1px solid #e2e8f0;margin-bottom:15px;overflow:hidden;}
+.ld-details summary{background:#f0fdff;padding:18px 20px;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;outline:none;font-weight:bold;border-bottom:1px solid #A5F3FC;list-style:none;}
+.ld-details summary::-webkit-details-marker{display:none;}
+.ld-details summary:hover{background:#ECFEFF;}
+.ld-details[open] summary{background:#ECFEFF;}
+.ld-body{padding:20px;}
+.ld-num{background:var(--listening);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;flex-shrink:0;}
+.ld-title{font-size:15px;color:#1a202c;flex:1;margin:0;font-weight:700;}
+.ld-time{font-size:12px;color:#4a5568;background:#ECFEFF;border:1px solid #A5F3FC;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.ld-arr{font-size:12px;color:#a0aec0;transition:transform .3s;}
+.ld-details[open] .ld-arr{transform:rotate(180deg);}
+.lst-steps{list-style:none;padding:0;}
+.lst-steps li{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start;font-size:14px;line-height:1.7;}
+.lst-num{width:26px;height:26px;border-radius:50%;background:var(--listening);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.dlg-wrap{background:white;border:1px solid var(--border);border-radius:10px;padding:16px;margin:14px 0;font-size:14px;}
+.dlg-spk{font-weight:700;color:var(--listening);font-size:12px;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px;}
+.dlg-txt{color:#374151;line-height:1.7;margin-bottom:10px;}
+.dlg-txt:last-child{margin-bottom:0;}
+.lst-opts{list-style:none;padding:0;}
+.lst-opts li{display:flex;gap:9px;align-items:center;padding:8px 12px;border-radius:8px;margin-bottom:5px;font-size:14px;border:1px solid var(--border);background:#fff;}
+.lst-opts li.ok{background:var(--success-light);border-color:#86EFAC;color:var(--success);font-weight:700;}
+.lst-ol{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--border);color:var(--text-muted);flex-shrink:0;}
+.lst-opts li.ok .lst-ol{background:var(--success);color:#fff;}
+.lst-note{font-size:13px;color:var(--success);font-weight:600;margin-top:10px;padding:9px 13px;background:var(--success-light);border-radius:7px;}
+.lst-q{font-size:14px;font-weight:700;color:var(--listening);margin:12px 0 9px;}
+.lst-bt{font-weight:bold;color:#2d3748;margin:20px 0 10px;border-bottom:2px solid #A5F3FC;padding-bottom:5px;font-size:14px;}
+/* DO DONT */
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.do-box{background:var(--success-light);border:1px solid #86EFAC;border-radius:8px;padding:14px;}
+.dn-box{background:var(--danger-light);border:1px solid #FCA5A5;border-radius:8px;padding:14px;}
+.do-box h5{color:var(--success);font-size:13px;font-weight:700;margin-bottom:9px;}
+.dn-box h5{color:var(--danger);font-size:13px;font-weight:700;margin-bottom:9px;}
+.do-box ul,.dn-box ul{list-style:none;}
+.do-box li,.dn-box li{font-size:13px;margin-bottom:6px;display:flex;gap:7px;}
+.do-box li::before{content:'✓';color:var(--success);font-weight:700;flex-shrink:0;}
+.dn-box li::before{content:'✗';color:var(--danger);font-weight:700;flex-shrink:0;}
+/* TIPS */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px;}
+.tip-card{background:white;border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;}
+.tip-card .tip-icon{font-size:22px;margin-bottom:8px;display:block;}
+.tip-card h5{font-size:14px;font-weight:700;margin-bottom:6px;}
+.tip-card p{font-size:13px;color:var(--text-muted);}
+/* PRACTICE TEST LINKS */
+.practice-links{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;}
+.pl-card{background:white;border:2px solid var(--listening);border-radius:12px;padding:20px;text-align:center;text-decoration:none;color:var(--text);transition:all .2s;display:block;}
+.pl-card:hover{background:var(--listening-light);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.pl-card .pl-icon{font-size:32px;display:block;margin-bottom:10px;}
+.pl-card .pl-title{font-size:16px;font-weight:700;color:var(--listening);display:block;margin-bottom:6px;}
+.pl-card .pl-desc{font-size:13px;color:var(--text-muted);}
+.pl-card .pl-btn{display:inline-block;margin-top:12px;background:var(--listening);color:white;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:700;}
+/* FOOTER */
+.page-footer{background:var(--primary);color:white;text-align:center;padding:40px 24px;margin-top:60px;}
+.page-footer h3{font-size:22px;font-weight:700;margin-bottom:10px;}
+.page-footer p{opacity:.8;font-size:14px;}
+/* MOBILE */
+@media(max-width:640px){
+  .hero h1{font-size:26px;} .hero{padding:30px 16px 50px;} .hero-stats{gap:14px;}
+  .hero-stat .num{font-size:24px;} .tab-btn{padding:12px 14px;font-size:13px;}
+  .container{padding:0 12px;} .do-dont{grid-template-columns:1fr;}
+  .practice-links{grid-template-columns:1fr;} .tips-grid{grid-template-columns:1fr 1fr;}
+  .section-header h2{font-size:19px;} .overview-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media print{.tabs-wrap{display:none;}.day-section{display:block!important;}.topic-body{display:block!important;}.ra-body,.ld-body{display:block!important;}}
+</style>
+</head>
+<body>
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-badge">🎓 حقيبة تدريبية — طلاب ثانوية النابغة الجعدي</div>
+    <h1>اختبار <span>STEP</span><br>تدريب تفاعلي</h1>
+    <p>كل ما تحتاجه: شرح + تقنيات + أمثلة كاملة + تدريبات محلولة</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">2</span><span class="lbl">أيام تدريب</span></div>
+      <div class="hero-stat"><span class="num">3</span><span class="lbl">أقسام رئيسية</span></div>
+      <div class="hero-stat"><span class="num">120+</span><span class="lbl">دقيقة محتوى</span></div>
+      <div class="hero-stat"><span class="num">200+</span><span class="lbl">سؤال تدريبي</span></div>
+    </div>
+    <br>
+    <p>إعداد معلم اللغة الإنجليزية / الأستاذ فهد المطيري<br>إشراف مدير المدرسة / الأستاذ فواز الروقي</p>
+  </div>
+</div>
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showDay('intro',event)">🏠 نظرة عامة</button>
+    <button class="tab-btn" onclick="showDay('day1',event)">📖 اليوم الأول — القراءة</button>
+    <button class="tab-btn" onclick="showDay('day2',event)">✍️ اليوم الثاني — القواعد</button>
+    <button class="tab-btn" onclick="showDay('day3',event)">🎧 اليوم الثاني — الاستماع</button>
+  </div>
+</div>
+
+<!-- ===== INTRO ===== -->
+<div id="intro" class="day-section active">
+  <div class="container">
+    <div class="section-header">
+      <div class="day-badge" style="background:#FEF3C7;color:#92400E;font-size:22px;">📋</div>
+      <div><h2>ما هو اختبار STEP؟</h2><p>كل ما تحتاج معرفته قبل أن تبدأ</p></div>
+    </div>
+    <div class="info-box amber">
+      <div class="ib-icon">💡</div>
+      <div><h4>اختبار STEP باختصار</h4>
+        <p>اختبار محلي يُقيس مستوى اللغة الإنجليزية. درجاته من 0 إلى 100، ومدته الكاملة ساعتان و45 دقيقة.</p>
+      </div>
+    </div>
+    <!-- Card 1 -->
+    <div class="topic-card">
+      <div class="topic-header" onclick="toggleTopic(this)">
+        <div class="topic-num" style="background:#FEF3C7;color:#92400E;">1</div>
+        <h3>هيكل الاختبار والأقسام</h3>
+        <span class="topic-time">⏱ 5 دقائق</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-block"><h4>توزيع الدرجات</h4>
+          <div class="pb-wrap"><div class="pb-label"><span>📖 القراءة</span><span>40% — 40 سؤالاً</span></div><div class="pb-track"><div class="pb-fill pb-r"></div></div></div>
+          <div class="pb-wrap"><div class="pb-label"><span>✍️ القواعد</span><span>40% — 40 سؤالاً</span></div><div class="pb-track"><div class="pb-fill pb-g"></div></div></div>
+          <div class="pb-wrap"><div class="pb-label"><span>🎧 الاستماع</span><span>20% — 20 سؤالاً</span></div><div class="pb-track"><div class="pb-fill pb-l"></div></div></div>
+        </div>
+        <div class="content-block"><h4>جدول الأقسام</h4>
+          <table class="schedule-table">
+            <tr><th>القسم</th><th>الأسئلة</th><th>الوقت</th><th>النسبة</th></tr>
+            <tr><td>🎧 الاستماع</td><td>20 سؤال</td><td>25 دقيقة</td><td>20%</td></tr>
+            <tr><td>📖 القراءة</td><td>40 سؤال</td><td>60 دقيقة</td><td>40%</td></tr>
+            <tr><td>✍️ القواعد</td><td>40 سؤال</td><td>30 دقيقة</td><td>40%</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="topic-card">
+      <div class="topic-header" onclick="toggleTopic(this)">
+        <div class="topic-num" style="background:#FEF3C7;color:#92400E;">2</div>
+        <h3>معنى الدرجات ومتطلبات الجهات</h3>
+        <span class="topic-time">⏱ 5 دقائق</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="topic-body">
+        <table class="schedule-table">
+          <tr><th>الدرجة</th><th>المستوى</th></tr>
+          <tr><td>أقل من 40</td><td>تأسيسي</td></tr>
+          <tr><td>40 – 60</td><td>مبتدئ</td></tr>
+          <tr><td>60 – 80</td><td>متوسط</td></tr>
+          <tr><td>80 – 100</td><td>متقدم</td></tr>
+        </table>
+        <ul class="steps" style="margin-top:16px;">
+          <li><div class="step-num" style="background:#FEF3C7;color:#92400E;">1</div><div class="step-text">🎓 <strong>التقديم على الدراسات العليا</strong> في الجامعات السعودية</div></li>
+          <li><div class="step-num" style="background:#FEF3C7;color:#92400E;">2</div><div class="step-text">💼 <strong>الإعفاء من مقررات اللغة الإنجليزية</strong> في الجامعة</div></li>
+          <li><div class="step-num" style="background:#FEF3C7;color:#92400E;">3</div><div class="step-text">🏫 <strong>القبول في الكليات العسكرية</strong> وبرامج اللغة</div></li>
+          <li><div class="step-num" style="background:#FEF3C7;color:#92400E;">4</div><div class="step-text">💼 <strong>التقديم على الفرص الوظيفية</strong> التي تشترط مستوى محدداً</div></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="topic-card">
+      <div class="topic-header" onclick="toggleTopic(this)">
+        <div class="topic-num" style="background:#FEF3C7;color:#92400E;">3</div>
+        <h3>خطة التدريب — يومين</h3>
+        <span class="topic-time">⏱ 5 دقائق</span>
+        <span class="toggle-icon open">▼</span>
+      </div>
+      <div class="topic-body open">
+        <table class="schedule-table">
+          <tr><th>اليوم</th><th>الموضوع</th><th>المحتوى</th><th>الوقت</th></tr>
+          <tr><td><span class="day-tag tag-read">اليوم ١</span></td><td>📖 القراءة</td><td>تقنية Skimming &amp; Scanning + تدريبات</td><td><span class="time-badge">60 دقيقة</span></td></tr>
+          <tr><td><span class="day-tag tag-gram">اليوم ٢</span></td><td>✍️ القواعد والاستماع</td><td>أهم القواعد + تدريبات الاستماع</td><td><span class="time-badge">60 دقيقة</span></td></tr>
+        </table>
+      </div>
+      </div>
+    </div><div style="background: #ffffff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 20px; box-shadow: 0 1px 8px rgba(0,0,0,.08); max-width: 960px; margin: 20px auto; font-family: 'Cairo', sans-serif; direction: rtl; text-align: right;">
+    
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #E5E7EB;">
+        <div style="width: 46px; height: 46px; border-radius: 9px; background: #EEF3FF; color: #1B4FBF; display: flex; align-items: center; justify-content: center; font-size: 20px;">📘</div>
+        <div>
+            <h3 style="font-size: 16px; font-weight: 800; color: #111827; margin: 0;">كتاب قياس الرسمي لاختبار STEP</h3>
+            <p style="font-size: 13px; color: #6B7280; margin: 3px 0 0 0;">يمكنك تصفح وقراءة الدليل الشامل والأسئلة التدريبية مباشرة داخل الموقع</p>
+        </div>
+    </div>
+
+    <div style="position: relative; width: 100%; height: 600px; border-radius: 7px; overflow: hidden; border: 1px solid #BDD0FF; background: #F8F9FB;">
+        <iframe src="كتاب قياس في اختبار STEP.pdf" style="width: 100%; height: 100%; border: none;" allow="autoplay"></iframe>
+    </div>
+    
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===== DAY 1 READING ===== -->
+<div id="day1" class="day-section day1">
+  <div class="container">
+    <div class="section-header">
+      <div class="day-badge">📖</div>
+      <div><h2>اليوم الأول — قسم القراءة</h2><p>40% من الاختبار • 40 سؤالاً • 60 دقيقة</p></div>
+    </div>
+    <div class="overview-grid">
+      <div class="ov-card"><span class="ov-icon">📄</span><span class="ov-num ov-reading">13</span><span class="ov-lbl">قطعة كحد أقصى</span></div>
+      <div class="ov-card"><span class="ov-icon">❓</span><span class="ov-num ov-reading">40</span><span class="ov-lbl">سؤال</span></div>
+      <div class="ov-card"><span class="ov-icon">⏱</span><span class="ov-num ov-time">60</span><span class="ov-lbl">دقيقة</span></div>
+      <div class="ov-card"><span class="ov-icon">⚡</span><span class="ov-num ov-time">1.5</span><span class="ov-lbl">دقيقة/سؤال</span></div>
+    </div>
+    <div class="info-box blue">
+      <div class="ib-icon">📌</div>
+      <div><h4>القطع المتوقعة</h4><p>قطع قصيرة (1–4 فقرات) • قطع طويلة (4–6 فقرات) • جمل منفردة • تحذيرات • رسوم بيانية</p></div>
+    </div>
+
+    <!-- Skimming -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">أ</div><h3 class="ra-title">تقنية Skimming &amp; Scanning — الحل السريع لقسم القراءة</h3><span class="ra-time">⏱ 15 دقيقة</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <ul class="ra-steps">
+          <li><div class="ra-sn">أ</div><div><strong>اقرأ أول سطر من كل فقرة</strong> — لتخمين الموضوع الأساسي.</div></li>
+          <li><div class="ra-sn">ب</div><div><strong>اقرأ السؤال وحدّد الكلمات الدلالية</strong> — مثل التواريخ والأسماء.</div></li>
+          <li><div class="ra-sn">ج</div><div><strong>حدّد مكان الإجابة في القطعة</strong> — دون قراءة النص كاملاً.</div></li>
+          <li><div class="ra-sn">د</div><div><strong>استبعد الاختيارات الخاطئة</strong> — للوصول للإجابة الصحيحة.</div></li>
+        </ul>
+        <div class="ra-ex">
+          <span style="font-size:11px;font-weight:700;color:#2b6cb0;display:block;margin-bottom:10px;text-transform:uppercase;">مثال تطبيقي</span>
+          <div class="ra-passage">The King Faisal Prize is one of the most prestigious awards in the Arab world. It was <u>first</u> established in <u>1979</u> to recognize excellence in Islamic studies, Arabic literature, medicine, and science.</div>
+          <div class="ra-q">When was the King Faisal Prize first established?</div>
+          <ul class="ra-opts">
+            <li><div class="ra-ol">A</div> 1982</li>
+            <li class="ok"><div class="ra-ol">B</div> 1979</li>
+            <li><div class="ra-ol">C</div> 1990</li>
+          </ul>
+          <div class="ra-note">✅ الإجابة B مباشرة من النص: "first established in 1979"</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Vocabulary -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">١</div><h3 class="ra-title">أسئلة المعنى (Vocabulary)</h3><span class="ra-time">⏱ قطعتان</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <p class="ra-bt">القطعة الأولى (Passage 1)</p>
+        <div class="ra-passage">"The desert climate is famously known for its extreme temperatures. However, many plants have adapted to these <b>harsh</b> conditions. For instance, some shrubs have developed <b>shallow</b> roots that spread out wide just below the surface to quickly absorb any rare rainfall."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: The word "<b>shallow</b>" is closest in meaning to:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Very deep</li><li class="ok"><div class="ra-ol">B</div> Not deep</li><li><div class="ra-ol">C</div> Strong</li><li><div class="ra-ol">D</div> Invisible</li></ul>
+          <div class="ra-note">✅ shallow = ضحل / غير عميق → B</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: The word "<b>harsh</b>" means:</div>
+          <ul class="ra-opts"><li class="ok"><div class="ra-ol">A</div> Severe and difficult</li><li><div class="ra-ol">B</div> Soft and nice</li><li><div class="ra-ol">C</div> Cold and wet</li><li><div class="ra-ol">D</div> Common</li></ul>
+          <div class="ra-note">✅ harsh = قاسٍ / صعب → A</div>
+        </div>
+        <p class="ra-bt">القطعة الثانية (Passage 2)</p>
+        <div class="ra-passage">"Online learning has become a major part of modern education. Many universities offer <b>flexible</b> courses that allow students to study at their own pace. This has <b>benefited</b> working adults who cannot attend traditional classes."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: The word "<b>benefited</b>" means:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Hurt</li><li><div class="ra-ol">B</div> Changed</li><li class="ok"><div class="ra-ol">C</div> Helped</li><li><div class="ra-ol">D</div> Stopped</li></ul>
+          <div class="ra-note">✅ benefited = أفاد / ساعد → C</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: "<b>flexible</b>" is closest in meaning to:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Rigid and fixed</li><li class="ok"><div class="ra-ol">B</div> Adaptable to change</li><li><div class="ra-ol">C</div> Very expensive</li><li><div class="ra-ol">D</div> Difficult</li></ul>
+          <div class="ra-note">✅ flexible = مرن / قابل للتكيف → B</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Pronoun -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">٢</div><h3 class="ra-title">أسئلة الضمير (Pronoun Reference)</h3><span class="ra-time">⏱ قطعتان</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <p class="ra-bt">القطعة الأولى (Passage 1)</p>
+        <div class="ra-passage">"The local football club signed two new players last week. <b>They</b> arrived at the training camp yesterday to meet the coach. The coach expressed <b>his</b> high expectations for the upcoming tournament."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: The pronoun "<b>They</b>" refers to:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> The training camps</li><li class="ok"><div class="ra-ol">B</div> The new players</li><li><div class="ra-ol">C</div> The coaches</li><li><div class="ra-ol">D</div> The tournaments</li></ul>
+          <div class="ra-note">✅ They → "two new players" → B</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: The possessive "<b>his</b>" refers to:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> A new player</li><li><div class="ra-ol">B</div> The club</li><li class="ok"><div class="ra-ol">C</div> The coach</li><li><div class="ra-ol">D</div> The camp</li></ul>
+          <div class="ra-note">✅ his → "the coach" → C</div>
+        </div>
+        <p class="ra-bt">القطعة الثانية (Passage 2)</p>
+        <div class="ra-passage">"Smartphones have changed the way people communicate. Although <b>it</b> brings many advantages like instant messaging, constant use of <b>this technology</b> can affect social relationships in real life."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: The pronoun "<b>it</b>" refers to:</div>
+          <ul class="ra-opts"><li class="ok"><div class="ra-ol">A</div> Smartphone</li><li><div class="ra-ol">B</div> Messaging</li><li><div class="ra-ol">C</div> Advantage</li><li><div class="ra-ol">D</div> Real life</li></ul>
+          <div class="ra-note">✅ it → "Smartphones" → A</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: "<b>this technology</b>" refers to:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Social relationships</li><li><div class="ra-ol">B</div> Instant messaging</li><li class="ok"><div class="ra-ol">C</div> Smartphones</li><li><div class="ra-ol">D</div> The advantages</li></ul>
+          <div class="ra-note">✅ this technology → Smartphones → C</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Direct Info -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">٣</div><h3 class="ra-title">أسئلة المعلومة (Direct Information)</h3><span class="ra-time">⏱ قطعتان</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <p class="ra-bt">القطعة الأولى</p>
+        <div class="ra-passage">"The first successful airplane flight was made by the Wright brothers in 1903. The historic flight lasted for only 12 seconds and covered a total distance of 120 feet in North Carolina."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: In which year did the first successful airplane flight take place?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> 1200</li><li><div class="ra-ol">B</div> 1912</li><li class="ok"><div class="ra-ol">C</div> 1903</li><li><div class="ra-ol">D</div> 1897</li></ul>
+          <div class="ra-note">✅ "in 1903" → C</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: How long did the first flight last?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> 120 feet</li><li class="ok"><div class="ra-ol">B</div> 12 seconds</li><li><div class="ra-ol">C</div> One hour</li><li><div class="ra-ol">D</div> 1903 seconds</li></ul>
+          <div class="ra-note">✅ "lasted for only 12 seconds" → B — انتبه: 120 هي المسافة وليس الوقت</div>
+        </div>
+        <p class="ra-bt">القطعة الثانية</p>
+        <div class="ra-passage">"Honeybees are essential for the ecosystem because they pollinate about one-third of the food we eat. A single bee colony can contain up to 60,000 bees, working together to produce honey and protect the queen."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: How many bees can a single colony contain?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> One-third</li><li><div class="ra-ol">B</div> 30,000</li><li class="ok"><div class="ra-ol">C</div> Up to 60,000</li><li><div class="ra-ol">D</div> 100,000</li></ul>
+          <div class="ra-note">✅ "up to 60,000 bees" → C</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: Honeybees pollinate how much of our food?</div>
+          <ul class="ra-opts"><li class="ok"><div class="ra-ol">A</div> One-third</li><li><div class="ra-ol">B</div> All of it</li><li><div class="ra-ol">C</div> Half of it</li><li><div class="ra-ol">D</div> 60,000 tons</li></ul>
+          <div class="ra-note">✅ "pollinate about one-third" → A</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Main Idea -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">٤</div><h3 class="ra-title">أسئلة الموضوع (Main Idea / Topic)</h3><span class="ra-time">⏱ قطعتان</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <p class="ra-bt">القطعة الأولى</p>
+        <div class="ra-passage">"Regular exercise provides multiple health benefits. It strengthens the heart muscle, lowers the risk of chronic diseases, and improves a person's mental mood by reducing stress. Spending just 30 minutes a day walking can make a huge difference in overall well-being."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: What is the main topic of this passage?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> How to walk for 30 minutes</li><li class="ok"><div class="ra-ol">B</div> The health benefits of regular exercise</li><li><div class="ra-ol">C</div> Chronic heart diseases</li><li><div class="ra-ol">D</div> Reducing work stress</li></ul>
+          <div class="ra-note">✅ الجملة الأولى تحدد الموضوع: "health benefits" → B</div>
+        </div>
+        <p class="ra-bt">القطعة الثانية</p>
+        <div class="ra-passage">"Renewable energy sources, such as solar power and wind energy, are expanding rapidly around the globe. Unlike fossil fuels, they do not emit harmful gases into the atmosphere. Governments are investing heavily in these clean alternatives to combat climate change."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: The main idea of this text is that:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Fossil fuels are very cheap</li><li><div class="ra-ol">B</div> Solar power only works in sunny areas</li><li class="ok"><div class="ra-ol">C</div> Renewable energy is growing as a clean alternative</li><li><div class="ra-ol">D</div> Climate change cannot be stopped</li></ul>
+          <div class="ra-note">✅ النص كله عن تنامي الطاقة المتجددة كبديل نظيف → C</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Inference -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">٥</div><h3 class="ra-title">أسئلة الرأي والاستنتاج (Inference / Opinion)</h3><span class="ra-time">⏱ قطعتان</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <p class="ra-bt">القطعة الأولى</p>
+        <div class="ra-passage">"James looked out the window and saw dark clouds rolling in. He noticed people on the street opening their umbrellas and hurrying inside stores. He turned back and picked up his heavy raincoat before leaving the house."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: What can be inferred about the weather?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> It was a hot sunny day</li><li class="ok"><div class="ra-ol">B</div> It was about to rain</li><li><div class="ra-ol">C</div> A snowstorm had just ended</li><li><div class="ra-ol">D</div> The weather was perfectly clear</li></ul>
+          <div class="ra-note">✅ الغيوم + المظلات + المعطف = على وشك المطر → B</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: Why did James pick up his raincoat?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> He wanted to look fashionable</li><li><div class="ra-ol">B</div> He was going to buy a new umbrella</li><li class="ok"><div class="ra-ol">C</div> He expected the weather to become wet and cold</li><li><div class="ra-ol">D</div> Stores were closed</li></ul>
+          <div class="ra-note">✅ السياق يدل على توقع المطر والبرد → C</div>
+        </div>
+        <p class="ra-bt">القطعة الثانية</p>
+        <div class="ra-passage">"The author argues that relying entirely on automated AI tools to grade students' essays reduces the human touch in education. While machines can check grammar instantly, they cannot appreciate creative ideas or deep emotional expressions."</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: What is the author's opinion regarding AI grading?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> AI should completely replace human teachers</li><li class="ok"><div class="ra-ol">B</div> AI tools lack the ability to evaluate human creativity</li><li><div class="ra-ol">C</div> AI is bad at checking grammar</li><li><div class="ra-ol">D</div> Essay writing should be banned</li></ul>
+          <div class="ra-note">✅ "they cannot appreciate creative ideas" → B</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Video -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">🎥</div><h3 class="ra-title">شرح قسم القراءة — فيديو توضيحي</h3><span class="ra-time">⏱ فيديو</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;background:#000;">
+          <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/zTl9D7N83dw" allowfullscreen></iframe>
+        </div>
+      </div>
+    </details>
+
+    <!-- Passage 1: Personalities -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">📖</div><h3 class="ra-title">تدريب — القطعة الأولى: Personalities Type A &amp; B</h3><span class="ra-time">⏱ ص ٣١-٣٢</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <div class="ra-passage">Psychologists have categorized human personalities into two main types: Type A and Type B. People with Type A personalities are typically competitive, highly driven, and intensely organized. <u>They</u> often feel a continuous sense of time urgency, find it extremely difficult to relax, and tend to take on more responsibilities than they can handle. They may become easily stressed or impatient when things do not move at their expected pace. On the other hand, Type B personalities are generally more relaxed, easygoing, and less stressed. They do not become anxious or <u>hostile</u> if they do not win or finish first. They are reflective, highly creative, and allow themselves time to explore without feeling guilt.</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: Which trait is most associated with Type A personalities?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Being consistently reflective and calm</li><li class="ok"><div class="ra-ol">B</div> Exhibiting a continuous sense of time urgency</li><li><div class="ra-ol">C</div> Preferring to work without any schedule</li><li><div class="ra-ol">D</div> Avoiding organization</li></ul>
+          <div class="ra-note">💡 B — "a continuous sense of time urgency"</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: The word "<b>hostile</b>" most nearly means:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Friendly and welcoming</li><li class="ok"><div class="ra-ol">B</div> Aggressive or unfriendly</li><li><div class="ra-ol">C</div> Extremely creative</li><li><div class="ra-ol">D</div> Indifferent</li></ul>
+          <div class="ra-note">💡 B — hostile = عدواني / معادٍ</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q3: The underlined "<u>They</u>" refers to:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Psychologists</li><li><div class="ra-ol">B</div> Human personalities</li><li class="ok"><div class="ra-ol">C</div> People with Type A personalities</li><li><div class="ra-ol">D</div> Type B personalities</li></ul>
+          <div class="ra-note">💡 C — يعود على الاسم الأقرب: "People with Type A personalities"</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Passage 2: Edison -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">📖</div><h3 class="ra-title">تدريب — القطعة الثانية: Thomas Edison</h3><span class="ra-time">⏱ ص ٣٣-٣٥</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <div class="ra-passage">Thomas Edison was one of the most prolific and famous American inventors in history. Born in 1847, he developed numerous groundbreaking devices in fields such as electric power generation, mass communication, and sound recording. His most famous invention was the practical electric light bulb, which <u>transformed</u> modern industrial society by allowing factories and individuals to work long after dark. Edison was renowned for his incredible work ethic; he famously stated that "genius is one percent inspiration and ninety-nine percent perspiration." Over his lifetime, he held more than 1,000 patents globally.</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: What is the main focus of the passage?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> The history of mass communication in America</li><li class="ok"><div class="ra-ol">B</div> Thomas Edison's life and his major inventions</li><li><div class="ra-ol">C</div> How factories operated in the 19th century</li><li><div class="ra-ol">D</div> The development of global patent laws</li></ul>
+          <div class="ra-note">💡 B — النص كله عن حياة إديسون وإسهاماته</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: The word "<b>transformed</b>" is closest in meaning to:</div>
+          <ul class="ra-opts"><li class="ok"><div class="ra-ol">A</div> Completely changed</li><li><div class="ra-ol">B</div> Slowly damaged</li><li><div class="ra-ol">C</div> Carefully maintained</li><li><div class="ra-ol">D</div> Strictly limited</li></ul>
+          <div class="ra-note">💡 A — transformed = حوّل / غيّر بالكامل</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q3: Based on Edison's quote, he believed:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Intelligence is purely a matter of luck</li><li><div class="ra-ol">B</div> Inventions are created without planning</li><li class="ok"><div class="ra-ol">C</div> Hard work is far more critical than sudden ideas</li><li><div class="ra-ol">D</div> Inspiration is the only thing needed for a patent</li></ul>
+          <div class="ra-note">💡 C — 99% perspiration (جهد) مقابل 1% inspiration</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Passage 3: Radio -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">📖</div><h3 class="ra-title">تدريب — القطعة الثالثة: The Invention of Radio</h3><span class="ra-time">⏱ ص ٣٦-٣٨</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <div class="ra-passage">The invention of the radio revolutionized how information and entertainment were shared across the globe. Before the widespread adoption of the radio, individuals relied primarily on printed newspapers, which could take days or even weeks to deliver breaking news from distant locations. In the early 20th century, wireless telegraphy developed into mass broadcasting, allowing live voices, news updates, and music to be transmitted over immense distances <u>simultaneously</u>. Entire families would gather around radio sets to listen to global updates, sports events, and audio dramas. This shared experience created a unified national culture by connecting remote rural communities with major urban centers.</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: Before the radio, how did most people get their news?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Through live television</li><li class="ok"><div class="ra-ol">B</div> From printed newspapers</li><li><div class="ra-ol">C</div> By traveling to urban centers</li><li><div class="ra-ol">D</div> Via wireless telegraph at home</li></ul>
+          <div class="ra-note">💡 B — "relied primarily on printed newspapers"</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: The word "<b>simultaneously</b>" means events occur:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> One after another with delays</li><li class="ok"><div class="ra-ol">B</div> At the exact same point in time</li><li><div class="ra-ol">C</div> Only during evening hours</li><li><div class="ra-ol">D</div> In an unorganized manner</li></ul>
+          <div class="ra-note">💡 B — simultaneously = في نفس الوقت / بالتزامن</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q3: The radio helped build a unified culture by:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Encouraging people to buy more newspapers</li><li class="ok"><div class="ra-ol">B</div> Connecting remote rural areas with urban centers</li><li><div class="ra-ol">C</div> Forcing families to move into cities</li><li><div class="ra-ol">D</div> Restricting audio dramas to local channels</li></ul>
+          <div class="ra-note">💡 B — "connecting remote, rural communities with major urban centers"</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Passage 4: Roller Coasters -->
+    <details class="ra-details">
+      <summary><div class="ra-cnum">📖</div><h3 class="ra-title">تدريب — القطعة الرابعة: Roller Coasters</h3><span class="ra-time">⏱ ص ٣٩-٤١</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <div class="ra-passage">Roller coasters are popular amusement park rides designed to induce feelings of excitement, thrill, and controlled fear. Although they may appear dangerous, they are exceptionally well-engineered machines built under <u>strict</u> regulatory safety standards. The intense thrill stems from rapid changes in velocity and the physical effects of gravity on the passenger's body. The ride relies on potential energy accumulated as the train is pulled up the first hill. Once the train crosses the highest peak, this energy is converted into kinetic energy as gravity drops the train downward at breathtaking speeds.</div>
+        <div class="ra-ex">
+          <div class="ra-q">Q1: What is the primary purpose behind the design of a roller coaster?</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> To provide modern urban transportation</li><li class="ok"><div class="ra-ol">B</div> To generate intense excitement and fear under safe conditions</li><li><div class="ra-ol">C</div> To test high-speed trains in bad weather</li><li><div class="ra-ol">D</div> To prove that gravity does not affect machines</li></ul>
+          <div class="ra-note">💡 B — "designed to induce feelings of excitement, thrill, and controlled fear"</div>
+        </div>
+        <div class="ra-ex">
+          <div class="ra-q">Q2: The word "<b>strict</b>" is closest in meaning to:</div>
+          <ul class="ra-opts"><li><div class="ra-ol">A</div> Loose or optional</li><li class="ok"><div class="ra-ol">B</div> Rigid and exact</li><li><div class="ra-ol">C</div> Outdated and old</li><li><div class="ra-ol">D</div> Cheap and simple</li></ul>
+          <div class="ra-note">💡 B — strict = صارم / دقيق</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Conclusion -->
+    <details class="ra-details" open>
+      <summary><div class="ra-cnum">🏁</div><h3 class="ra-title">خاتمة قسم القراءة — استراتيجيات الحل الذهبية</h3><span class="ra-time">🎯 مراجعة</span><span class="ra-arr">▼</span></summary>
+      <div class="ra-body">
+        <div class="tips-grid">
+          <div class="tip-card"><span class="tip-icon">⏱</span><h5>إدارة الوقت</h5><p>90 ثانية لكل سؤال. ضع علامة ؟ وانتقل إذا صعب السؤال.</p></div>
+          <div class="tip-card"><span class="tip-icon">🔄</span><h5>المرادفات</h5><p>الإجابة الصحيحة نادراً ما تستخدم نفس كلمات النص.</p></div>
+          <div class="tip-card"><span class="tip-icon">👉</span><h5>الضمائر</h5><p>يعود دائماً على الاسم الأقرب قبله في السياق.</p></div>
+          <div class="tip-card"><span class="tip-icon">⚡</span><h5>Skimming</h5><p>لا تقرأ النص كاملاً — حدد موقع الإجابة مباشرة.</p></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+
+<!-- ===== DAY 2 GRAMMAR ===== -->
+<div id="day2" class="day-section day2">
+  <div class="container">
+    <div class="section-header">
+      <div class="day-badge">✍️</div>
+      <div><h2>اليوم الثاني — قسم القواعد</h2><p>40% من الاختبار • 40 سؤالاً • 30 دقيقة</p></div>
+    </div>
+    <div class="overview-grid">
+      <div class="ov-card"><span class="ov-icon">✍️</span><span class="ov-num ov-grammar">40</span><span class="ov-lbl">سؤال</span></div>
+      <div class="ov-card"><span class="ov-icon">⏱</span><span class="ov-num ov-time">30</span><span class="ov-lbl">دقيقة</span></div>
+      <div class="ov-card"><span class="ov-icon">⚡</span><span class="ov-num ov-time">45</span><span class="ov-lbl">ثانية/سؤال</span></div>
+      <div class="ov-card"><span class="ov-icon">📚</span><span class="ov-num ov-grammar">16</span><span class="ov-lbl">قاعدة رئيسية</span></div>
+    </div>
+    <div class="info-box purple">
+      <div class="ib-icon">⚡</div>
+      <div><h4>قسم القواعد</h4><p>عندك فقط 45 ثانية لكل سؤال — اقرأ الاختيارات أولاً وخمّن القاعدة!</p></div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header" onclick="toggleTopic(this)">
+        <div class="topic-num">A</div>
+        <h3>خمّن القاعدة قبل ما تقرأ السؤال</h3>
+        <span class="topic-time">⏱ 10 دقائق</span>
+        <span class="toggle-icon open">▼</span>
+      </div>
+      <div class="topic-body open">
+        <ul class="steps">
+          <li><div class="step-num">أ</div><div class="step-text"><strong>اقرأ الاختيارات أولاً</strong> — قبل السؤال! الاختيارات تكشف القاعدة</div></li>
+          <li><div class="step-num">ب</div><div class="step-text"><strong>خمّن القاعدة</strong> — مثلاً (driving / drove / drives) = سؤال عن الزمن</div></li>
+          <li><div class="step-num">ج</div><div class="step-text"><strong>حدد الكلمات الدلالية</strong> — مثل: yesterday, usually, since, while...</div></li>
+          <li><div class="step-num">د</div><div class="step-text"><strong>استبعد الخاطئة</strong> — يرفع نسبة صحتك 50%</div></li>
+        </ul>
+        <div class="grammar-box">
+          <span class="ex-label">مثال تطبيقي</span>
+          <p style="background:white;border:1px solid #D9CEFF;border-radius:8px;padding:12px;font-size:14px;direction:ltr;text-align:left;margin-bottom:12px;">She _____ to work every day by bus.<br><span style="color:#888;font-size:13px;">A. go &nbsp;&nbsp; B. goes &nbsp;&nbsp; C. going &nbsp;&nbsp; D. went</span></p>
+          <ul class="steps">
+            <li><div class="step-num">١</div><div class="step-text">الكلمة الدلالية: <strong>"every day"</strong> = مضارع بسيط</div></li>
+            <li><div class="step-num">٢</div><div class="step-text">الفاعل "She" → نضيف s → الإجابة: <strong>goes ✅</strong></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header" onclick="toggleTopic(this)">
+        <div class="topic-num">B</div>
+        <h3>أهم القواعد المتكررة في STEP</h3>
+        <span class="topic-time">⏱ 25 دقيقة</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-block"><h4>١. الأزمنة — الكلمات الدلالية</h4></div>
+        <div class="grammar-box">
+          <span class="ex-label">جدول الكلمات الدلالية</span>
+          <table class="schedule-table">
+            <tr><th>الزمن</th><th>الكلمات الدلالية</th><th>مثال</th></tr>
+            <tr><td>مضارع بسيط</td><td>every, always, usually, often, sometimes</td><td style="direction:ltr;text-align:left;">She <span class="blank">goes</span> every day.</td></tr>
+            <tr><td>مضارع تام</td><td>since, for, yet, just, already, ever, never</td><td style="direction:ltr;text-align:left;">I <span class="blank">have lived</span> here since 2010.</td></tr>
+            <tr><td>ماضٍ بسيط</td><td>yesterday, last, ago</td><td style="direction:ltr;text-align:left;">He <span class="blank">visited</span> Makkah last year.</td></tr>
+            <tr><td>ماضٍ مستمر</td><td>while, when + ماضٍ</td><td style="direction:ltr;text-align:left;">I <span class="blank">was studying</span> when he called.</td></tr>
+            <tr><td>مستقبل</td><td>tomorrow, next, soon, later</td><td style="direction:ltr;text-align:left;">She <span class="blank">will travel</span> next week.</td></tr>
+          </table>
+        </div>
+        <div class="content-block"><h4>٢. المقارنة والتفضيل</h4></div>
+        <div class="grammar-box">
+          <span class="ex-label">قاعدة المقارنة</span>
+          <div class="rule-card"><div class="rule-title">مقارنة بين شيئين — صفة قصيرة</div><div class="rule-text">adjective + er + than</div><div class="eg" style="direction:ltr;text-align:left;">Makkah is <strong>hotter than</strong> Taif. ✅</div></div>
+          <div class="rule-card"><div class="rule-title">مقارنة بين شيئين — صفة طويلة</div><div class="rule-text">more + adjective + than</div><div class="eg" style="direction:ltr;text-align:left;">This exam is <strong>more difficult than</strong> the last one. ✅</div></div>
+          <div class="rule-card"><div class="rule-title">تفضيل — صفة قصيرة</div><div class="rule-text">The + adjective + est</div><div class="eg" style="direction:ltr;text-align:left;">He is <strong>the tallest</strong> in the class. ✅</div></div>
+          <div class="rule-card"><div class="rule-title">تفضيل — صفة طويلة</div><div class="rule-text">The most + adjective</div><div class="eg" style="direction:ltr;text-align:left;">This is <strong>the most beautiful</strong> city. ✅</div></div>
+        </div>
+        <div class="content-block"><h4>٣. أفعال المودال (Modal Verbs)</h4></div>
+        <div class="grammar-box">
+          <span class="ex-label">استخدامات الأفعال الناقصة</span>
+          <table class="schedule-table">
+            <tr><th>الفعل</th><th>الاستخدام</th><th>مثال</th></tr>
+            <tr><td><strong>can / could</strong></td><td>القدرة</td><td style="direction:ltr;text-align:left;">She <strong>can</strong> speak Arabic.</td></tr>
+            <tr><td><strong>must</strong></td><td>الإلزام / اليقين</td><td style="direction:ltr;text-align:left;">You <strong>must</strong> wear a seatbelt.</td></tr>
+            <tr><td><strong>should</strong></td><td>النصيحة</td><td style="direction:ltr;text-align:left;">You <strong>should</strong> eat vegetables.</td></tr>
+            <tr><td><strong>may / might</strong></td><td>الاحتمال</td><td style="direction:ltr;text-align:left;">It <strong>might</strong> rain tomorrow.</td></tr>
+            <tr><td><strong>would</strong></td><td>الطلب المؤدب</td><td style="direction:ltr;text-align:left;"><strong>Would</strong> you help me?</td></tr>
+          </table>
+        </div>
+        <div class="content-block"><h4>٤. الأسماء المعدودة وغير المعدودة</h4></div>
+        <div class="grammar-box">
+          <span class="ex-label">many / much / a lot of</span>
+          <div class="rule-card"><div class="rule-title">many → مع المعدود (الجمع)</div><div class="eg" style="direction:ltr;text-align:left;">How <strong>many</strong> books do you have? ✅</div></div>
+          <div class="rule-card"><div class="rule-title">much → مع غير المعدود</div><div class="eg" style="direction:ltr;text-align:left;">There isn't <strong>much</strong> water. ✅</div></div>
+          <div class="rule-card"><div class="rule-title">a lot of → يصلح للنوعين</div><div class="eg" style="direction:ltr;text-align:left;">She has <strong>a lot of</strong> friends / time. ✅</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header" onclick="toggleTopic(this)">
+        <div class="topic-num">C</div>
+        <h3>التحليل الكتابي — أنواع الأسئلة</h3>
+        <span class="topic-time">⏱ 15 دقيقة</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-block"><h4>النوع ١ — علامات الترقيم</h4></div>
+        <div class="grammar-box">
+          <span class="ex-label">مثال</span>
+          <div class="q-text">Which is correctly punctuated?</div>
+          <ul class="options">
+            <li><div class="opt-letter">A</div> Mr. Ali my teacher, is a programmer.</li>
+            <li><div class="opt-letter">B</div> Mr. Ali my teacher is a programmer.</li>
+            <li class="correct"><div class="opt-letter">C</div> Mr. Ali, my teacher, is a programmer.</li>
+            <li><div class="opt-letter">D</div> Mr. Ali my teacher is, a programmer.</li>
+          </ul>
+          <div class="answer-note">✅ الجملة الاعتراضية دائماً بين فاصلتين</div>
+        </div>
+        <div class="content-block"><h4>النوع ٢ — التكبير (Capitalization)</h4></div>
+        <div class="grammar-box">
+          <span class="ex-label">قواعد الحرف الكبير</span>
+          <div class="rule-card"><div class="rule-title">يُكتب بحرف كبير</div><div class="rule-text">الأسماء الخاصة: Red Sea, Mr. Hassan, Saudi Arabia, Paris</div></div>
+          <div class="rule-card"><div class="rule-title">يُكتب بحرف صغير</div><div class="rule-text">الفصول: summer, winter | المواد العامة: math, science (إلا Arabic, English)</div></div>
+          <div class="q-text" style="margin-top:14px;">Which is correctly capitalized?</div>
+          <ul class="options">
+            <li><div class="opt-letter">A</div> This Summer, my family will travel to Paris.</li>
+            <li><div class="opt-letter">B</div> This Summer, my Family will travel to Paris.</li>
+            <li class="correct"><div class="opt-letter">C</div> This summer, my family will travel to Paris.</li>
+            <li><div class="opt-letter">D</div> This summer, my family will travel to paris.</li>
+          </ul>
+          <div class="answer-note">✅ summer بحرف صغير، Paris اسم مكان بحرف كبير</div>
+        </div>
+        <div class="content-block"><h4>النوع ٣ — ترتيب الجمل</h4></div>
+        <div class="grammar-box">
+          <span class="ex-label">مثال ترتيب</span>
+          <ul class="steps">
+            <li><div class="step-num">1</div><div class="step-text" style="direction:ltr;">Ahmad's life is very busy.</div></li>
+            <li><div class="step-num">2</div><div class="step-text" style="direction:ltr;">First, his mother wakes him up early to pray Al-Fajr.</div></li>
+            <li><div class="step-num">3</div><div class="step-text" style="direction:ltr;">Then, he has his breakfast.</div></li>
+            <li><div class="step-num">4</div><div class="step-text" style="direction:ltr;">Finally, he leaves around 6:30.</div></li>
+          </ul>
+          <div class="answer-note">✅ الترتيب: 1→2→3→4 (جملة عامة → تسلسل زمني)</div>
+        </div>
+      </div>
+    </div>
+<!-- قسم مستقل لعرض الفيديو التعليمي -->
+<div class="video-section-container" style="margin: 20px 0; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+  
+  <!-- عنوان القسم -->
+  <div style="display: flex; align-items: center; margin-bottom: 16px; border-bottom: 2px solid #ECFEFF; padding-bottom: 10px;">
+    <span style="font-size: 24px; margin-left: 10px;">🎬</span>
+    <h3 style="margin: 0; font-size: 16px; font-weight: 700; color: #0f172a; font-family: inherit;">شرح قسم ال Grammar - فيديو توضيحي </h3>
+  </div>
+
+  <!-- مشغل الفيديو المتجاوب والمباشر داخل الموقع -->
+  <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000000; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+    <iframe 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+      src="https://www.youtube.com/embed/HSGA6sKJ2KY?rel=0&modestbranding=1" 
+      title="YouTube video player" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</p>
+
+</div>
+    <!-- ===== PDF SECTION — GRAMMAR ONLY ===== -->
+    <div class="topic-card">
+      <div class="topic-header" onclick="toggleTopic(this)">
+        <div class="topic-num">D</div>
+        <h3>تدريبات وأسئلة محلولة — ملفات PDF</h3>
+        <span class="topic-time">⏱ تدريبات إضافية</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="topic-body">
+        <style>
+          .pdf-section-card { background: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 30px; padding: 20px; border-top: 5px solid #7c4dff; }
+          .pdf-section-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f0edf9; padding-bottom: 12px; margin-bottom: 15px; }
+          .pdf-title-block { display: flex; align-items: center; gap: 12px; }
+          .pdf-icon { font-size: 24px; background: #f0edf9; padding: 8px; border-radius: 8px; color: #7c4dff; }
+          .pdf-title-block h2 { margin: 0; font-size: 18px; color: #2d3748; }
+          .pdf-badge { background-color: #e9e5ff; color: #7c4dff; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+          .pdf-iframe-wrapper { width: 100%; border-radius: 8px; overflow: hidden; background-color: #fafafa; border: 1px solid #e2e8f0; }
+          .pdf-iframe { width: 100%; height: 750px; border: none; display: block; }
+          .fallback-box { padding: 25px; text-align: center; color: #4a5568; }
+          .pdf-btn { display: inline-block; margin-top: 12px; padding: 10px 20px; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; }
+          .color-part1 { border-top-color: #7c4dff; }
+          .color-part1 .pdf-icon { color: #7c4dff; background: #f0edf9; }
+          .btn-part1 { background-color: #7c4dff; }
+          .color-part2 { border-top-color: #28a745; }
+          .color-part2 .pdf-icon { color: #28a745; background: #e6f4ea; }
+          .color-part2 .pdf-badge { color: #28a745; background-color: #e6f4ea; }
+          .btn-part2 { background-color: #28a745; }
+          .color-part3 { border-top-color: #dc3545; }
+          .color-part3 .pdf-icon { color: #dc3545; background: #fdf2f2; }
+          .color-part3 .pdf-badge { color: #dc3545; background-color: #fdf2f2; }
+          .btn-part3 { background-color: #dc3545; }
+        </style>
+
+        <div class="pdf-section-card color-part1">
+          <div class="pdf-section-header">
+            <div class="pdf-title-block">
+              <span class="pdf-icon">📘</span>
+              <h2>القسم الأول: شرح Grammar مع أمثلة وأسئلة تدريبية</h2>
+            </div>
+            <span class="pdf-badge">الملف الأول</span>
+          </div>
+          <div class="pdf-iframe-wrapper">
+            <iframe src="step11.pdf" type="application/pdf" class="pdf-iframe">
+              <div class="fallback-box">
+                <p>المتصفح الحالي لا يدعم العرض المباشر لملفات PDF.</p>
+                <a href="step11.pdf" class="pdf-btn btn-part1" target="_blank">اضغط هنا لفتح أو تحميل الملف</a>
+              </div>
+            </iframe>
+          </div>
+        </div>
+
+        <div class="pdf-section-card color-part2">
+          <div class="pdf-section-header">
+            <div class="pdf-title-block">
+              <span class="pdf-icon">📝</span>
+              <h2>القسم الثاني: مراجعة ال Grammar</h2>
+            </div>
+            <span class="pdf-badge">الملف الثاني</span>
+          </div>
+          <div class="pdf-iframe-wrapper">
+            <iframe src="step22.pdf" type="application/pdf" class="pdf-iframe">
+              <div class="fallback-box">
+                <p>المتصفح الحالي لا يدعم العرض المباشر لملفات PDF.</p>
+                <a href="step22.pdf" class="pdf-btn btn-part2" target="_blank">اضغط هنا لفتح أو تحميل الملف</a>
+              </div>
+            </iframe>
+          </div>
+        </div>
+
+        <div class="pdf-section-card color-part3">
+          <div class="pdf-section-header">
+            <div class="pdf-title-block">
+              <span class="pdf-icon">📊</span>
+              <h2>القسم الثالث: أسئلة تدريبية</h2>
+            </div>
+            <span class="pdf-badge">الملف الثالث</span>
+          </div>
+          <div class="pdf-iframe-wrapper">
+            <iframe src="step33.pdf" type="application/pdf" class="pdf-iframe">
+              <div class="fallback-box">
+                <p>المتصفح الحالي لا يدعم العرض المباشر لملفات PDF.</p>
+                <a href="step33.pdf" class="pdf-btn btn-part3" target="_blank">اضغط هنا لفتح أو تحميل الملف</a>
+              </div>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===== DAY 3 LISTENING ===== -->
+<div id="day3" class="day-section day3">
+  <div class="container">
+    <div class="section-header">
+      <div class="day-badge">🎧</div>
+      <div><h2>اليوم الثاني — قسم الاستماع</h2><p>20% من الاختبار • 20 سؤالاً • 25 دقيقة</p></div>
+    </div>
+    <div class="overview-grid">
+      <div class="ov-card"><span class="ov-icon">🎧</span><span class="ov-num ov-listening">20</span><span class="ov-lbl">سؤال</span></div>
+      <div class="ov-card"><span class="ov-icon">⏱</span><span class="ov-num ov-time">25</span><span class="ov-lbl">دقيقة</span></div>
+      <div class="ov-card"><span class="ov-icon">🔊</span><span class="ov-num ov-listening">4</span><span class="ov-lbl">حوارات تدريبية</span></div>
+      <div class="ov-card"><span class="ov-icon">⚡</span><span class="ov-num ov-time">75</span><span class="ov-lbl">ثانية/سؤال</span></div>
+    </div>
+    <div class="info-box teal">
+      <div class="ib-icon">📌</div>
+      <div><h4>نوع أسئلة الاستماع</h4><p>محادثات قصيرة بين شخصين • الأسئلة عن: الموضوع، المكان، العلاقة، المشكلة، الموقف</p></div>
+    </div>
+
+<style>
+.tts-player{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 10px rgba(0,0,0,0.06);}
+.tts-title{color:#0369A1;font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.tts-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
+.tts-btn{border:none;border-radius:8px;padding:9px 18px;font-family:"Cairo",sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s;}
+.tts-play{background:#0891B2;color:white;}
+.tts-play:hover{background:#0369A1;}
+.tts-pause{background:#E2E8F0;color:#374151;}
+.tts-pause:hover{background:#CBD5E0;}
+.tts-stop{background:#FEE2E2;color:#DC2626;}
+.tts-stop:hover{background:#FECACA;}
+.tts-speed{background:white;color:#374151;border:1px solid #D1D5DB;padding:7px 12px;border-radius:8px;font-family:"Cairo",sans-serif;font-size:13px;cursor:pointer;}
+.tts-progress{background:#E2E8F0;border-radius:20px;height:6px;margin-bottom:10px;overflow:hidden;}
+.tts-bar{background:#0891B2;height:100%;border-radius:20px;width:0%;transition:width .3s;}
+.tts-line{font-size:13px;color:#374151;padding:5px 10px;border-radius:6px;margin-bottom:5px;direction:ltr;text-align:left;line-height:1.6;}
+.tts-line.active{background:#EFF6FF;color:#1D4ED8;font-weight:700;border-right:3px solid #3B82F6;}
+.tts-voice-badge{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;}
+.voice-a{background:#DBEAFE;color:#1D4ED8;font-size:12px;}
+.voice-b{background:#EDE9FE;color:#6D28D9;font-size:12px;}
+.tts-note{font-size:11px;color:#9CA3AF;margin-top:8px;text-align:center;}
+</style>
+
+<script>
+var ttsVoices=[];
+var ttsLoaded=false;
+function loadVoices(){
+  ttsVoices=window.speechSynthesis.getVoices();
+  ttsLoaded=ttsVoices.length>0;
+}
+window.speechSynthesis.onvoiceschanged=loadVoices;
+loadVoices();
+
+function getVoice(gender){
+  if(!ttsLoaded)loadVoices();
+  var prefs=gender==="male"?
+    ["David","Mark","Daniel","James","John","Google US English Male","en-US-Wavenet-D"]:
+    ["Zira","Susan","Samantha","Karen","Google US English Female","en-US-Wavenet-F","Victoria"];
+  for(var i=0;i<prefs.length;i++){
+    for(var j=0;j<ttsVoices.length;j++){
+      if(ttsVoices[j].name.indexOf(prefs[i])>=0&&ttsVoices[j].lang.indexOf("en")>=0)
+        return ttsVoices[j];
+    }
+  }
+  for(var k=0;k<ttsVoices.length;k++){
+    if(ttsVoices[k].lang==="en-US")return ttsVoices[k];
+  }
+  for(var m=0;m<ttsVoices.length;m++){
+    if(ttsVoices[m].lang.indexOf("en")>=0)return ttsVoices[m];
+  }
+  return null;
+}
+
+var activePlayers={};
+
+function buildPlayer(id,lines,speed){
+  var p=activePlayers[id]||{};
+  p.lines=lines; p.idx=0; p.paused=false; p.speed=speed||0.88; p.active=true;
+  activePlayers[id]=p;
+  playLine(id);
+}
+
+function playLine(id){
+  var p=activePlayers[id];
+  if(!p||!p.active||p.idx>=p.lines.length){
+    if(p)finishPlayer(id);
+    return;
+  }
+  if(p.paused)return;
+
+  var line=p.lines[p.idx];
+  highlightLine(id,p.idx);
+  updateProgress(id,p.idx,p.lines.length);
+
+  var utt=new SpeechSynthesisUtterance(line.text);
+  utt.lang="en-US";
+  utt.rate=p.speed;
+  utt.pitch=line.gender==="female"?1.15:0.9;
+  var v=getVoice(line.gender);
+  if(v)utt.voice=v;
+
+  utt.onend=function(){
+    if(!p.paused&&p.active){
+      p.idx++;
+      setTimeout(function(){playLine(id);},320);
+    }
+  };
+  utt.onerror=function(){
+    p.idx++;
+    setTimeout(function(){playLine(id);},200);
+  };
+
+  window.speechSynthesis.cancel();
+  setTimeout(function(){window.speechSynthesis.speak(utt);},50);
+  p.utt=utt;
+}
+
+function highlightLine(id,idx){
+  var els=document.querySelectorAll("#tts-"+id+" .tts-line");
+  els.forEach(function(el,i){el.classList.toggle("active",i===idx);});
+}
+
+function updateProgress(id,idx,total){
+  var bar=document.querySelector("#tts-"+id+" .tts-bar");
+  if(bar)bar.style.width=((idx/total)*100)+"%";
+}
+
+function finishPlayer(id){
+  var p=activePlayers[id];
+  if(p){p.active=false;p.idx=0;}
+  updateProgress(id,1,1);
+  var btn=document.querySelector("#tts-"+id+" .tts-play");
+  if(btn)btn.innerHTML="▶ تشغيل";
+  highlightLine(id,-1);
+}
+
+function ttsPlay(id){
+  var p=activePlayers[id];
+  // إيقاف أي مشغل آخر نشط
+  Object.keys(activePlayers).forEach(function(k){
+    if(k!==id&&activePlayers[k].active){
+      activePlayers[k].active=false;
+      activePlayers[k].paused=false;
+    }
+  });
+  window.speechSynthesis.cancel();
+
+  if(p&&p.paused){
+    p.paused=false; p.active=true;
+    var btn=document.querySelector("#tts-"+id+" .tts-play");
+    if(btn)btn.innerHTML="⏸ إيقاف مؤقت";
+    playLine(id);
+    return;
+  }
+  if(p&&p.active){
+    p.paused=true;
+    var btn2=document.querySelector("#tts-"+id+" .tts-play");
+    if(btn2)btn2.innerHTML="▶ استكمال";
+    window.speechSynthesis.cancel();
+    return;
+  }
+  var dialogues=window["dlg_"+id];
+  var sel=document.querySelector("#tts-"+id+" .tts-speed");
+  var sp=sel?parseFloat(sel.value):0.88;
+  var btn3=document.querySelector("#tts-"+id+" .tts-play");
+  if(btn3)btn3.innerHTML="⏸ إيقاف مؤقت";
+  buildPlayer(id,dialogues,sp);
+}
+
+function ttsStop(id){
+  window.speechSynthesis.cancel();
+  var p=activePlayers[id];
+  if(p){p.active=false;p.paused=false;p.idx=0;}
+  var btn=document.querySelector("#tts-"+id+" .tts-play");
+  if(btn)btn.innerHTML="▶ تشغيل";
+  highlightLine(id,-1);
+  updateProgress(id,0,1);
+}
+</script>
+
+    <!-- Technique -->
+    <details class="ld-details" open>
+      <summary><div class="ld-num">أ</div><h3 class="ld-title">تقنيات الاستماع الذكي في STEP</h3><span class="ld-time">⏱ 10 دقائق</span><span class="ld-arr">▼</span></summary>
+      <div class="ld-body">
+        <ul class="lst-steps">
+          <li><div class="lst-num">١</div><div><strong>اقرأ الاختيارات قبل بدء التسجيل</strong> — حدد ما تبحث عنه</div></li>
+          <li><div class="lst-num">٢</div><div><strong>ركّز على أول وآخر جملة</strong> — تحتويان على الفكرة الرئيسية</div></li>
+          <li><div class="lst-num">٣</div><div><strong>انتبه للكلمات العاطفية</strong> — sorry, happy, upset, worried</div></li>
+          <li><div class="lst-num">٤</div><div><strong>استمع للأرقام والأماكن</strong> — هي الأكثر وروداً في الأسئلة</div></li>
+        </ul>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
+          <div class="do-box"><h5>✅ افعل</h5><ul>
+            <li>اقرأ الاختيارات قبل التسجيل</li>
+            <li>ركّز على الكلمات الأولى</li>
+            <li>انتبه للأرقام والأوقات</li>
+            <li>حدد موضوع الحوار سريعاً</li>
+          </ul></div>
+          <div class="dn-box"><h5>✗ لا تفعل</h5><ul>
+            <li>لا تكتب كل كلمة تسمعها</li>
+            <li>لا تخمّن قبل الاستماع</li>
+            <li>لا تتوقف عند كلمة لم تفهمها</li>
+            <li>لا تترك اختياراً فارغاً</li>
+          </ul></div>
+        </div>
+    <!-- قسم الفيديو المستقل بالهوية البصرية المعتمدة -->
+<div class="video-section" style="background-color: #1a2e40; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); max-width: 800px; margin: 20px auto; border-bottom: 5px solid #2d8a4e; direction: rtl;">
+    
+    <!-- عنوان القسم الداخلي -->
+    <h3 style="color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 1.2rem; margin-top: 0; margin-bottom: 20px; text-align: center; font-weight: 600; letter-spacing: 0.5px;">
+        شرح قسم الاستماع  - فيديو توضيحي
+    </h3>
+
+    <!-- حاوية الفيديو المتجاوبة -->
+    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000;">
+        <iframe 
+            src="https://www.youtube.com/embed/Yzajwh1YsxU" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+        </iframe>
+    </div>
+</div>  </div>
+    </details>
+
+    <!-- Dialogue 1 -->
+    <details class="ld-details">
+      <summary><div class="ld-num">١</div><h3 class="ld-title">حوار ١ — في المستشفى (Doctor &amp; Patient)</h3><span class="ld-time">⏱ تدريب</span><span class="ld-arr">▼</span></summary>
+      <div class="ld-body">
+        <p class="lst-bt">🎧 الحوار — اضغط تشغيل واستمع</p>
+        <script>window["dlg_dlg1"]=[{text:'Good morning! What seems to be the problem today?',gender:'male'},{text:'I\'ve had a terrible headache and a high fever since yesterday evening. I also feel very tired.',gender:'female'},{text:'I see. Let me check your temperature first. Do you have any allergies to medication?',gender:'male'},{text:'No, I don\'t think so. Is it something serious?',gender:'female'},{text:'It\'s likely the flu. I\'ll prescribe some medicine. Take it twice a day. Make sure you rest and drink plenty of fluids.',gender:'male'},];</script>
+<div class="tts-player" id="tts-dlg1">
+  <div class="tts-title">🎧 اضغط تشغيل لسماع الحوار بصوت بشري حقيقي</div>
+  <div class="tts-controls">
+    <button class="tts-btn tts-play" onclick="ttsPlay('dlg1')">▶ تشغيل</button>
+    <button class="tts-btn tts-stop" onclick="ttsStop('dlg1')">⏹ إعادة</button>
+    <select class="tts-speed" onchange="activePlayers['dlg1']&&(activePlayers['dlg1'].speed=parseFloat(this.value))">
+      <option value="0.75">🐢 بطيء</option>
+      <option value="0.88" selected>🎯 عادي</option>
+      <option value="1.0">⚡ سريع</option>
+    </select>
+  </div>
+  <div class="tts-progress"><div class="tts-bar"></div></div>
+  <div style="padding:4px 0;"><div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Doctor</span></span> Good morning! What seems to be the problem today?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Patient</span></span> I've had a terrible headache and a high fever since yesterday evening. I also feel very tired.</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Doctor</span></span> I see. Let me check your temperature first. Do you have any allergies to medication?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Patient</span></span> No, I don't think so. Is it something serious?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Doctor</span></span> It's likely the flu. I'll prescribe some medicine. Take it twice a day. Make sure you rest and drink plenty of fluids.</div>
+</div>
+  <div class="tts-note">⚠️ يعمل في Chrome و Edge — تأكد من تفعيل الصوت</div>
+</div>
+        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+          <p style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px;">📄 نص الحوار للمراجعة</p>
+          <div class="dlg-wrap">
+            <div class="dlg-spk">👨 Doctor</div><div class="dlg-txt">Good morning! What seems to be the problem today?</div>
+            <div class="dlg-spk">👩 Patient</div><div class="dlg-txt">I've had a terrible headache and a high fever since yesterday evening. I also feel very tired.</div>
+            <div class="dlg-spk">👨 Doctor</div><div class="dlg-txt">Let me check your temperature first. Do you have any allergies to medication?</div>
+            <div class="dlg-spk">👩 Patient</div><div class="dlg-txt">No, I don't think so. Is it something serious?</div>
+            <div class="dlg-spk">👨 Doctor</div><div class="dlg-txt">It's likely the flu. I'll prescribe some medicine. Take it twice a day. Make sure you rest and drink plenty of fluids.</div>
+          </div>
+        </div>
+        <p class="lst-bt">❓ الأسئلة</p>
+        <div class="lst-q">Q1: Where does this conversation take place?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> A pharmacy</li><li class="ok"><div class="lst-ol">B</div> A hospital or clinic</li><li><div class="lst-ol">C</div> A school</li><li><div class="lst-ol">D</div> A supermarket</li></ul>
+        <div class="lst-note">✅ B — دكتور يفحص مريضاً = مستشفى أو عيادة</div>
+        <div class="lst-q">Q2: What is the patient's main complaint?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> Stomachache and vomiting</li><li><div class="lst-ol">B</div> Allergy to medication</li><li class="ok"><div class="lst-ol">C</div> Headache, fever, and fatigue</li><li><div class="lst-ol">D</div> Back pain and dizziness</li></ul>
+        <div class="lst-note">✅ C — "headache, high fever, feel very tired"</div>
+        <div class="lst-q">Q3: What does the doctor advise?</div>
+        <ul class="lst-opts"><li class="ok"><div class="lst-ol">A</div> Rest and drink plenty of fluids</li><li><div class="lst-ol">B</div> Go to hospital immediately</li><li><div class="lst-ol">C</div> Take an allergy test</li><li><div class="lst-ol">D</div> Avoid eating solid food</li></ul>
+        <div class="lst-note">✅ A — "rest and drink plenty of fluids"</div>
+      </div>
+    </details>
+
+    <!-- Dialogue 2 -->
+    <details class="ld-details">
+      <summary><div class="ld-num">٢</div><h3 class="ld-title">حوار ٢ — في المطعم (Waiter &amp; Customer)</h3><span class="ld-time">⏱ تدريب</span><span class="ld-arr">▼</span></summary>
+      <div class="ld-body">
+        <p class="lst-bt">🎧 الحوار — اضغط تشغيل واستمع</p>
+        <script>window["dlg_dlg2"]=[{text:'Welcome! Are you ready to order, sir?',gender:'male'},{text:'Yes. I\'d like the grilled chicken with a side salad, please. And a large orange juice.',gender:'female'},{text:'Of course. Any soup to start with?',gender:'male'},{text:'No, thank you. Just the main course. How long will it take?',gender:'female'},{text:'About 15 minutes. Can I get your table number?',gender:'male'},{text:'Table number seven.',gender:'female'},];</script>
+<div class="tts-player" id="tts-dlg2">
+  <div class="tts-title">🎧 اضغط تشغيل لسماع الحوار بصوت بشري حقيقي</div>
+  <div class="tts-controls">
+    <button class="tts-btn tts-play" onclick="ttsPlay('dlg2')">▶ تشغيل</button>
+    <button class="tts-btn tts-stop" onclick="ttsStop('dlg2')">⏹ إعادة</button>
+    <select class="tts-speed" onchange="activePlayers['dlg2']&&(activePlayers['dlg2'].speed=parseFloat(this.value))">
+      <option value="0.75">🐢 بطيء</option>
+      <option value="0.88" selected>🎯 عادي</option>
+      <option value="1.0">⚡ سريع</option>
+    </select>
+  </div>
+  <div class="tts-progress"><div class="tts-bar"></div></div>
+  <div style="padding:4px 0;"><div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Waiter</span></span> Welcome! Are you ready to order, sir?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Customer</span></span> Yes. I'd like the grilled chicken with a side salad, please. And a large orange juice.</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Waiter</span></span> Of course. Any soup to start with?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Customer</span></span> No, thank you. Just the main course. How long will it take?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Waiter</span></span> About 15 minutes. Can I get your table number?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Customer</span></span> Table number seven.</div>
+</div>
+  <div class="tts-note">⚠️ يعمل في Chrome و Edge — تأكد من تفعيل الصوت</div>
+</div>
+        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+          <p style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px;">📄 نص الحوار للمراجعة</p>
+          <div class="dlg-wrap">
+            <div class="dlg-spk">👨 Waiter</div><div class="dlg-txt">Welcome! Are you ready to order, sir?</div>
+            <div class="dlg-spk">👩 Customer</div><div class="dlg-txt">Yes. I'd like the grilled chicken with a side salad, please. And a large orange juice.</div>
+            <div class="dlg-spk">👨 Waiter</div><div class="dlg-txt">Of course. Any soup to start with?</div>
+            <div class="dlg-spk">👩 Customer</div><div class="dlg-txt">No, thank you. Just the main course. How long will it take?</div>
+            <div class="dlg-spk">👨 Waiter</div><div class="dlg-txt">About 15 minutes. Can I get your table number?</div>
+            <div class="dlg-spk">👩 Customer</div><div class="dlg-txt">Table number 7.</div>
+          </div>
+        </div>
+        <p class="lst-bt">❓ الأسئلة</p>
+        <div class="lst-q">Q1: What did the customer order?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> Beef steak with soup</li><li class="ok"><div class="lst-ol">B</div> Grilled chicken with salad</li><li><div class="lst-ol">C</div> Pasta with orange juice</li><li><div class="lst-ol">D</div> Soup and sandwich</li></ul>
+        <div class="lst-note">✅ B — "grilled chicken with a side salad"</div>
+        <div class="lst-q">Q2: How long will the order take?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> 7 minutes</li><li><div class="lst-ol">B</div> 20 minutes</li><li class="ok"><div class="lst-ol">C</div> 15 minutes</li><li><div class="lst-ol">D</div> 30 minutes</li></ul>
+        <div class="lst-note">✅ C — "About 15 minutes"</div>
+        <div class="lst-q">Q3: Where does this conversation take place?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> A grocery store</li><li class="ok"><div class="lst-ol">B</div> A restaurant</li><li><div class="lst-ol">C</div> A hotel lobby</li><li><div class="lst-ol">D</div> A food market</li></ul>
+        <div class="lst-note">✅ B — نادل + وجبة + رقم الطاولة = مطعم</div>
+      </div>
+    </details>
+
+    <!-- Dialogue 3 -->
+    <details class="ld-details">
+      <summary><div class="ld-num">٣</div><h3 class="ld-title">حوار ٣ — موعد متأخر (Phone Call)</h3><span class="ld-time">⏱ تدريب</span><span class="ld-arr">▼</span></summary>
+      <div class="ld-body">
+        <p class="lst-bt">🎧 الحوار — اضغط تشغيل واستمع</p>
+        <script>window["dlg_dlg3"]=[{text:'Hello, Khalid! We\'ve been waiting for you for 20 minutes.',gender:'female'},{text:'I\'m so sorry, Sarah. I\'m stuck in heavy traffic near the highway. I don\'t think I\'ll make it before seven.',gender:'male'},{text:'That\'s okay. Should we start without you or wait a bit longer?',gender:'female'},{text:'Please go ahead and start. I\'ll join as soon as I can. Again, I\'m really sorry!',gender:'male'},{text:'No problem. Drive safely!',gender:'female'},];</script>
+<div class="tts-player" id="tts-dlg3">
+  <div class="tts-title">🎧 اضغط تشغيل لسماع الحوار بصوت بشري حقيقي</div>
+  <div class="tts-controls">
+    <button class="tts-btn tts-play" onclick="ttsPlay('dlg3')">▶ تشغيل</button>
+    <button class="tts-btn tts-stop" onclick="ttsStop('dlg3')">⏹ إعادة</button>
+    <select class="tts-speed" onchange="activePlayers['dlg3']&&(activePlayers['dlg3'].speed=parseFloat(this.value))">
+      <option value="0.75">🐢 بطيء</option>
+      <option value="0.88" selected>🎯 عادي</option>
+      <option value="1.0">⚡ سريع</option>
+    </select>
+  </div>
+  <div class="tts-progress"><div class="tts-bar"></div></div>
+  <div style="padding:4px 0;"><div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Sarah</span></span> Hello, Khalid! We've been waiting for you for 20 minutes.</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Khalid</span></span> I'm so sorry, Sarah. I'm stuck in heavy traffic near the highway. I don't think I'll make it before seven.</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Sarah</span></span> That's okay. Should we start without you or wait a bit longer?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Khalid</span></span> Please go ahead and start. I'll join as soon as I can. Again, I'm really sorry!</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Sarah</span></span> No problem. Drive safely!</div>
+</div>
+  <div class="tts-note">⚠️ يعمل في Chrome و Edge — تأكد من تفعيل الصوت</div>
+</div>
+        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+          <p style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px;">📄 نص الحوار للمراجعة</p>
+          <div class="dlg-wrap">
+            <div class="dlg-spk">👩 Sarah</div><div class="dlg-txt">Hello, Khalid! We've been waiting for you for 20 minutes.</div>
+            <div class="dlg-spk">👨 Khalid</div><div class="dlg-txt">I'm so sorry, Sarah. I'm stuck in heavy traffic near the highway. I don't think I'll make it before 7.</div>
+            <div class="dlg-spk">👩 Sarah</div><div class="dlg-txt">That's okay. Should we start without you or wait a bit longer?</div>
+            <div class="dlg-spk">👨 Khalid</div><div class="dlg-txt">Please go ahead and start. I'll join as soon as I can. Again, I'm really sorry!</div>
+            <div class="dlg-spk">👩 Sarah</div><div class="dlg-txt">No problem. Drive safely!</div>
+          </div>
+        </div>
+        <p class="lst-bt">❓ الأسئلة</p>
+        <div class="lst-q">Q1: Why is Khalid late?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> He forgot the appointment</li><li><div class="lst-ol">B</div> He had a car accident</li><li class="ok"><div class="lst-ol">C</div> He is stuck in heavy traffic</li><li><div class="lst-ol">D</div> He is lost</li></ul>
+        <div class="lst-note">✅ C — "stuck in heavy traffic near the highway"</div>
+        <div class="lst-q">Q2: What does Khalid tell Sarah to do?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> Cancel the meeting</li><li><div class="lst-ol">B</div> Come and pick him up</li><li class="ok"><div class="lst-ol">C</div> Start without him</li><li><div class="lst-ol">D</div> Wait for one hour</li></ul>
+        <div class="lst-note">✅ C — "Please go ahead and start"</div>
+        <div class="lst-q">Q3: What is the relationship between the two speakers?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> Doctor and patient</li><li class="ok"><div class="lst-ol">B</div> Friends or colleagues</li><li><div class="lst-ol">C</div> Teacher and student</li><li><div class="lst-ol">D</div> Waiter and customer</li></ul>
+        <div class="lst-note">✅ B — الأسلوب الودي = أصدقاء أو زملاء</div>
+      </div>
+    </details>
+
+    <!-- Dialogue 4 -->
+    <details class="ld-details">
+      <summary><div class="ld-num">٤</div><h3 class="ld-title">حوار ٤ — حجز في الفندق (Hotel Receptionist)</h3><span class="ld-time">⏱ تدريب</span><span class="ld-arr">▼</span></summary>
+      <div class="ld-body">
+        <p class="lst-bt">🎧 الحوار — اضغط تشغيل واستمع</p>
+        <script>window["dlg_dlg4"]=[{text:'Good evening! Welcome to the Grand Hotel. How can I assist you?',gender:'female'},{text:'Hello! I have a reservation for two nights under the name Omar Al-Shahrani.',gender:'male'},{text:'Let me check. Yes, I can see your reservation. Room two fifteen, a double room with a sea view. Here is your key card.',gender:'female'},{text:'Great. Is breakfast included in the booking?',gender:'male'},{text:'Yes, complimentary breakfast is served daily from seven to ten in the morning, in the main dining hall.',gender:'female'},{text:'Perfect. Thank you very much!',gender:'male'},];</script>
+<div class="tts-player" id="tts-dlg4">
+  <div class="tts-title">🎧 اضغط تشغيل لسماع الحوار بصوت بشري حقيقي</div>
+  <div class="tts-controls">
+    <button class="tts-btn tts-play" onclick="ttsPlay('dlg4')">▶ تشغيل</button>
+    <button class="tts-btn tts-stop" onclick="ttsStop('dlg4')">⏹ إعادة</button>
+    <select class="tts-speed" onchange="activePlayers['dlg4']&&(activePlayers['dlg4'].speed=parseFloat(this.value))">
+      <option value="0.75">🐢 بطيء</option>
+      <option value="0.88" selected>🎯 عادي</option>
+      <option value="1.0">⚡ سريع</option>
+    </select>
+  </div>
+  <div class="tts-progress"><div class="tts-bar"></div></div>
+  <div style="padding:4px 0;"><div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Receptionist</span></span> Good evening! Welcome to the Grand Hotel. How can I assist you?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Guest</span></span> Hello! I have a reservation for two nights under the name Omar Al-Shahrani.</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Receptionist</span></span> Let me check. Yes, I can see your reservation. Room two fifteen, a double room with a sea view. Here is your key card.</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Guest</span></span> Great. Is breakfast included in the booking?</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-b">👩 Receptionist</span></span> Yes, complimentary breakfast is served daily from seven to ten in the morning, in the main dining hall.</div>
+<div class="tts-line"><span style="margin-left:8px;"><span class="tts-voice-badge voice-a">👨 Guest</span></span> Perfect. Thank you very much!</div>
+</div>
+  <div class="tts-note">⚠️ يعمل في Chrome و Edge — تأكد من تفعيل الصوت</div>
+</div>
+        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+          <p style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px;">📄 نص الحوار للمراجعة</p>
+          <div class="dlg-wrap">
+            <div class="dlg-spk">👩 Receptionist</div><div class="dlg-txt">Good evening! Welcome to the Grand Hotel. How can I assist you?</div>
+            <div class="dlg-spk">👨 Guest</div><div class="dlg-txt">Hello! I have a reservation for two nights under Omar Al-Shahrani.</div>
+            <div class="dlg-spk">👩 Receptionist</div><div class="dlg-txt">Yes — Room 215, a double room with a sea view. Here is your key card.</div>
+            <div class="dlg-spk">👨 Guest</div><div class="dlg-txt">Is breakfast included?</div>
+            <div class="dlg-spk">👩 Receptionist</div><div class="dlg-txt">Yes, complimentary breakfast is served daily from 7 to 10 AM in the main dining hall.</div>
+            <div class="dlg-spk">👨 Guest</div><div class="dlg-txt">Perfect. Thank you very much!</div>
+          </div>
+        </div>
+        <p class="lst-bt">❓ الأسئلة</p>
+        <div class="lst-q">Q1: For how many nights is the reservation?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> One night</li><li class="ok"><div class="lst-ol">B</div> Two nights</li><li><div class="lst-ol">C</div> Three nights</li><li><div class="lst-ol">D</div> A week</li></ul>
+        <div class="lst-note">✅ B — "reservation for two nights"</div>
+        <div class="lst-q">Q2: What type of room was booked?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> Single room with city view</li><li class="ok"><div class="lst-ol">B</div> Double room with sea view</li><li><div class="lst-ol">C</div> Suite with garden view</li><li><div class="lst-ol">D</div> Single room with breakfast</li></ul>
+        <div class="lst-note">✅ B — "double room with a sea view"</div>
+        <div class="lst-q">Q3: When is breakfast served?</div>
+        <ul class="lst-opts"><li><div class="lst-ol">A</div> 6 to 9 AM</li><li class="ok"><div class="lst-ol">B</div> 7 to 10 AM</li><li><div class="lst-ol">C</div> 8 to 11 AM</li><li><div class="lst-ol">D</div> All day long</li></ul>
+        <div class="lst-note">✅ B — "from 7 to 10 AM"</div>
+      </div>
+    </details>
+
+    <!-- Practice Tests -->
+    <details class="ld-details">
+      <summary><div class="ld-num">🔗</div><h3 class="ld-title">اختبارات تجريبية تفاعلية — استماع حقيقي</h3><span class="ld-time">⏱ تدريب خارجي</span><span class="ld-arr">▼</span></summary>
+      <div class="ld-body">
+        <p style="margin-bottom:16px;font-size:14px;">جرّب اختبارات الاستماع التفاعلية مع أصوات حقيقية وأسئلة مماثلة لاختبار STEP:</p>
+        <div class="practice-links">
+          <a href="https://www.proprofs.com/quiz-school/ugc/story.php?title=copy-of-rb_60t9" target="_blank" class="pl-card">
+            <span class="pl-icon">🎧</span>
+            <span class="pl-title">اختبار استماع #١</span>
+            <span class="pl-desc">محادثات قصيرة ومتوسطة مع أسئلة اختيارية</span>
+            <span class="pl-btn">ابدأ الاختبار ↗</span>
+          </a>
+          <a href="https://www.proprofs.com/quiz-school/ugc/story.php?title=5pf" target="_blank" class="pl-card">
+            <span class="pl-icon">🎙️</span>
+            <span class="pl-title">اختبار استماع #٢</span>
+            <span class="pl-desc">تدريب إضافي على أنواع متعددة من الحوارات</span>
+            <span class="pl-btn">ابدأ الاختبار ↗</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- Final Tips -->
+    <details class="ld-details" open>
+      <summary><div class="ld-num">🏁</div><h3 class="ld-title">نصائح يوم الاختبار — ملخص نهائي</h3><span class="ld-time">🎯 مراجعة</span><span class="ld-arr">▼</span></summary>
+      <div class="ld-body">
+        <div class="tips-grid">
+          <div class="tip-card"><span class="tip-icon">😴</span><h5>نم جيداً</h5><p>8 ساعات نوم ليلة الاختبار — التركيز يبدأ بالراحة.</p></div>
+          <div class="tip-card"><span class="tip-icon">⏰</span><h5>احضر مبكراً</h5><p>30 دقيقة قبل الاختبار لتهدئة أعصابك.</p></div>
+          <div class="tip-card"><span class="tip-icon">📋</span><h5>اقرأ الاختيارات</h5><p>في القراءة والاستماع — اقرأ الاختيارات أولاً.</p></div>
+          <div class="tip-card"><span class="tip-icon">🚫</span><h5>لا تترك فراغاً</h5><p>لا خصم على الخطأ — أجب على كل سؤال.</p></div>
+          <div class="tip-card"><span class="tip-icon">⚡</span><h5>إدارة الوقت</h5><p>انتقل للصعب لاحقاً — لا تضيع وقتاً على سؤال واحد.</p></div>
+          <div class="tip-card"><span class="tip-icon">🧠</span><h5>ثق بنفسك</h5><p>تدربت جيداً — حوّل المعرفة إلى ثقة وأداء.</p></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <div style="font-size:36px;margin-bottom:12px;"></div>
+  <h3>أنت قادر على تحقيق هدفك 🎓</h3>
+  <p>حقيبة تدريبية مُعدّة بعناية لطلاب الثانوي في المملكة العربية السعودية</p>
+  <p style="margin-top:8px;">ابدأ من الصفر واختم اختبار STEP وتوصل لهدفك ✨</p>
+  
+<script>
+function showDay(id,e){
+  document.querySelectorAll('.day-section').forEach(d=>d.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(e&&e.currentTarget)e.currentTarget.classList.add('active');
+}
+function toggleTopic(h){
+  var b=h.nextElementSibling,ic=h.querySelector('.toggle-icon');
+  b.classList.toggle('open');ic.classList.toggle('open');
+}
+</script>
+</body></html>
